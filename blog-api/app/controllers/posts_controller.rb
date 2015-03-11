@@ -8,4 +8,10 @@ class PostsController < ApplicationController
     render json: Post.find(params[:id])
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(params.require(:post).permit(:title, :body))
+    render json: @post.save
+  end
+
 end
